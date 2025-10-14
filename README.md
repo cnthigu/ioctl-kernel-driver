@@ -262,19 +262,23 @@ Para visualizar mensagens do driver:
 
 ```cpp
 // No driver kernel
-DbgPrint("[+] Driver initialized successfully.\n");
-DbgPrint("[+] Device control called.\n");
-DbgPrint("[+] Read request received\n");
+DbgPrint("[+] Driver Kernel-Mode IOCTL carregado.\n");
+DbgPrint("[+] Device do driver criado com sucesso.\n");
+DbgPrint("[+] Symbolic Link estabelecido com sucesso.\n");
+DbgPrint("[+] Driver inicializado com sucesso.\n");
+DbgPrint("[+] Controle de dispositivo chamado.\n");
+DbgPrint("[+] Descarregamento do driver chamado. Limpando...\n");
+DbgPrint("[+] Driver descarregado com sucesso.\n");
 ```
 
 ### Logs Esperados
 
 ```
-[+] Loaded Kernel Mode Cheat.
-[+] Driver device successfully created.
-[+] Driver symbolic link successfully established.
-[+] Driver initialized successfully.
-[+] Device control called.
+[+] Driver Kernel-Mode IOCTL carregado.
+[+] Device do driver criado com sucesso.
+[+] Symbolic Link estabelecido com sucesso.
+[+] Driver inicializado com sucesso.
+[+] Controle de dispositivo chamado.
 ```
 
 ## Limitações
