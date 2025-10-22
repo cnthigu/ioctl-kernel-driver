@@ -7,22 +7,6 @@
 
 > **AVISO IMPORTANTE**: Este projeto é destinado **exclusivamente para fins educacionais**. O uso inadequado pode resultar em instabilidade do sistema ou violação de termos de serviço de jogos. Use apenas em ambientes controlados e com conhecimento adequado.
 
-## Índice
-
-- [Visão Geral](#-visão-geral)
-- [Arquitetura](#️-arquitetura)
-- [Requisitos](#-requisitos)
-- [Instalação](#-instalação)
-- [Como Usar](#-como-usar)
-- [Comunicação IOCTL](#-comunicação-ioctl)
-- [Estrutura do Projeto](#️-estrutura-do-projeto)
-- [Exemplos Práticos](#-exemplos-práticos)
-- [Debugging](#-debugging)
-- [Limitações](#️-limitações)
-- [Conceitos Técnicos](#-conceitos-técnicos)
-- [Contribuição](#-contribuição)
-- [Licença](#-licença)
-
 ##  Visão Geral
 
 Este é um template completo para desenvolvimento de drivers kernel-mode que utilizam comunicação **IOCTL** (Input/Output Control) para interação com processos de user-mode. O projeto demonstra como criar uma ponte segura entre aplicações user-mode e kernel-mode para operações de memória.
@@ -40,11 +24,11 @@ Este é um template completo para desenvolvimento de drivers kernel-mode que uti
 ### Fluxo de Comunicação
 
 ```
-┌─────────────────┐    IOCTL     ┌─────────────────┐    MmCopyVirtualMemory    ┌─────────────────┐
-│   User-Mode     │ ──────────► │   Kernel-Mode   │ ───────────────────────► │   Target        │
-│   Application   │              │   Driver        │                         │   Process       │
-│                 │ ◄────────── │                 │ ◄─────────────────────── │                 │
-└─────────────────┘              └─────────────────┘                         └─────────────────┘
+┌─────────────────┐    IOCTL     ┌─────────────────┐    MmCopyVirtualMemory   ┌─────────────────┐
+│   User-Mode     │ ──────────►  │   Kernel-Mode   │ ───────────────────────► │   Target        │
+│   Application   │              │    Driver       │                          │   Process       │
+│                 │ ◄──────────  │                 │ ◄─────────────────────── │                 │
+└─────────────────┘              └─────────────────┘                          └─────────────────┘
 ```
 
 ### Componentes Principais
@@ -68,8 +52,6 @@ Este é um template completo para desenvolvimento de drivers kernel-mode que uti
 
 ### Software Necessário
 
-- **Windows 10/11** (64-bit)
-- **Visual Studio 2022** com Windows Driver Kit (WDK)
 - **Administrator Privileges** (para carregar drivers)
 - **Test Signing** habilitado ou driver assinado
 
@@ -84,15 +66,7 @@ bcdedit /set testsigning on
 shutdown /r /t 0
 ```
 
-### 2. Compilação
-
-```cmd
-# Abrir Visual Studio como Administrador
-# Abrir IOCTL Cheat Driver.sln
-# Build → Build Solution (Ctrl+Shift+B)
-```
-
-### 3. Instalação do Driver
+### 2. Instalação do Driver
 
 ```cmd
 # Copiar kernel_mode.sys para C:\teste\
@@ -285,16 +259,10 @@ DbgPrint("[+] Driver descarregado com sucesso.\n");
 
 ### Segurança
 
-- **Não bypassa** anti-cheats kernel-mode (EAC, BattlEye)
 - **Não funciona** em sistemas com Secure Boot
 - **Requer** privilégios de Administrador
 - **Pode causar** BSOD se mal implementado
 
-### Performance
-
-- **Overhead** de comunicação IOCTL
-- **Latência** maior que métodos diretos
-- **Estável** para operações ocasionais
 
 ## Conceitos Técnicos
 
